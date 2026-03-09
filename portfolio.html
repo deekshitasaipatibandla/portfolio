@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deekshita Sai Patibandla — Supply Chain & Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D0F12;--bg-2:#111318;--bg-card:#161820;
+  --rule:rgba(255,255,255,0.07);--rule-mid:rgba(255,255,255,0.13);
+  --white:#F5F3EE;--off:rgba(245,243,238,0.55);--off-2:rgba(245,243,238,0.3);
+  --teal:#2DD4BF;--teal-dim:rgba(45,212,191,0.12);--teal-glow:rgba(45,212,191,0.05);
+  --amber:#F59E0B;
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-b:'Outfit',system-ui,sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+  --max:1140px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--font-b);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;cursor:none}
+a{color:inherit;text-decoration:none}
+
+/* Cursor */
+.cur{width:10px;height:10px;background:var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:screen}
+.cur-r{width:36px;height:36px;border:1px solid rgba(45,212,191,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+
+/* Grain */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.5}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:background .3s,padding .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.sc{background:rgba(13,15,18,0.92);backdrop-filter:blur(20px);border-bottom-color:var(--rule);padding:1rem 3rem}
+.n-logo{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--white)}
+.n-logo span{color:var(--teal)}
+.n-links{display:flex;align-items:center;gap:2.2rem;list-style:none}
+.n-links a{font-size:.8rem;font-weight:500;color:var(--off);letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.n-links a:hover{color:var(--white)}
+.n-cta{color:var(--bg)!important;background:var(--teal);padding:.48rem 1.2rem;border-radius:4px;font-weight:600!important;transition:opacity .2s,transform .15s!important}
+.n-cta:hover{opacity:.85;transform:translateY(-1px)}
+
+/* Hero */
+#home{min-height:100vh;display:flex;align-items:flex-end;padding:0 3rem 5rem;position:relative;overflow:hidden}
+.hg{position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);animation:gd 20s linear infinite}
+@keyframes gd{to{background-position:72px 72px,72px 72px}}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.o1{width:500px;height:500px;background:rgba(45,212,191,0.05);top:10%;right:10%;animation:ob 9s ease-in-out infinite}
+.o2{width:280px;height:280px;background:rgba(245,158,11,0.04);bottom:20%;left:5%;animation:ob 12s ease-in-out infinite reverse}
+@keyframes ob{0%,100%{transform:translateY(0)}50%{transform:translateY(-28px)}}
+.h-wrap{position:relative;z-index:2;max-width:var(--max);width:100%;margin:0 auto}
+.h-ey{font-family:var(--font-m);font-size:.72rem;color:var(--teal);letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:.75rem;margin-bottom:1.8rem;opacity:0;animation:ru .8s .3s cubic-bezier(.16,1,.3,1) forwards}
+.h-ey::before{content:'';width:32px;height:1px;background:var(--teal)}
+.h-h1{font-family:var(--font-d);font-size:clamp(3rem,7vw,7rem);font-weight:300;line-height:1.0;letter-spacing:-.02em;color:var(--white);max-width:860px;opacity:0;animation:ru .9s .45s cubic-bezier(.16,1,.3,1) forwards}
+.h-h1 em{font-style:italic;color:var(--teal)}
+.h-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:3rem;flex-wrap:wrap;margin-top:2.5rem;opacity:0;animation:ru .8s .7s cubic-bezier(.16,1,.3,1) forwards}
+.h-sub{font-size:1rem;color:var(--off);max-width:360px;line-height:1.7;font-weight:300}
+.h-btns{display:flex;gap:.875rem;flex-shrink:0}
+@keyframes ru{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+
+/* Buttons */
+.bs{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-b);font-size:.8rem;font-weight:600;color:var(--bg);background:var(--teal);padding:.7rem 1.4rem;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;transition:opacity .2s,transform .15s;cursor:none}
+.bs:hover{opacity:.85;transform:translateY(-1px)}
+.bg{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-b);font-size:.8rem;font-weight:500;color:var(--white);border:1px solid var(--rule-mid);padding:.7rem 1.4rem;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;transition:border-color .2s,color .2s,transform .15s;cursor:none}
+.bg:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-1px)}
+
+/* Proof strip */
+.proof{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:2.5rem 3rem}
+.p-in{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.p-item{padding:.5rem 2rem .5rem 0;border-right:1px solid var(--rule)}
+.p-item:last-child{border-right:none;padding-right:0}
+.p-num{font-family:var(--font-d);font-size:2.8rem;font-weight:300;line-height:1;color:var(--white);letter-spacing:-.03em;margin-bottom:.3rem}
+.p-num .ac{color:var(--teal)}
+.p-lab{font-size:.72rem;color:var(--off-2);letter-spacing:.04em;line-height:1.4}
+
+/* Sections */
+.sec{padding:7rem 3rem;position:relative}
+.s-in{max-width:var(--max);margin:0 auto}
+.s-ey{font-family:var(--font-m);font-size:.68rem;color:var(--teal);letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem}
+.s-ey::before{content:'';width:24px;height:1px;background:var(--teal)}
+.s-h2{font-family:var(--font-d);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.1;letter-spacing:-.02em;color:var(--white)}
+.s-h2 em{font-style:italic;color:var(--teal)}
+
+/* Tools */
+#tools{background:var(--bg)}
+.t-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:5rem}
+.t-desc{color:var(--off);font-size:.95rem;line-height:1.75;font-weight:300}
+.p-cards{display:flex;flex-direction:column;gap:1.5rem}
+.pc{background:var(--bg-card);border:1px solid var(--rule);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:360px;transition:border-color .3s;cursor:none}
+.pc:hover{border-color:var(--rule-mid)}
+.pc-info{padding:2.8rem 3rem;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--rule)}
+.pc-meta{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.8rem}
+.pc-n{font-family:var(--font-m);font-size:.65rem;color:var(--off-2);letter-spacing:.12em}
+.pc-tag{font-family:var(--font-m);font-size:.62rem;color:var(--teal);background:var(--teal-dim);padding:3px 10px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase}
+.pc-ti{font-family:var(--font-d);font-size:clamp(1.6rem,2.5vw,2.3rem);font-weight:400;line-height:1.15;letter-spacing:-.01em;color:var(--white);margin-bottom:.9rem}
+.pc-su{font-size:.87rem;color:var(--off);line-height:1.65;font-weight:300;margin-bottom:1.8rem;max-width:320px}
+.pc-dec{border-top:1px solid var(--rule);padding-top:1.2rem;margin-bottom:2rem}
+.pc-dl{font-family:var(--font-m);font-size:.6rem;color:var(--off-2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem}
+.pc-dt{font-size:.88rem;color:var(--teal);font-weight:500;line-height:1.5}
+.pc-btns{display:flex;gap:.55rem;flex-wrap:wrap}
+.pb{display:inline-flex;align-items:center;gap:.3rem;font-size:.73rem;font-weight:600;padding:.42rem .88rem;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;cursor:none}
+.pb-l{background:var(--teal);color:var(--bg)}
+.pb-l:hover{opacity:.85;transform:translateY(-1px)}
+.pb-o{border:1px solid var(--rule-mid);color:var(--off)}
+.pb-o:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-1px)}
+.pc-vis{padding:2.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;background:var(--bg);position:relative;overflow:hidden}
+.pc-vis::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,var(--teal-glow),transparent)}
+.v-wrap{position:relative;z-index:1;width:100%;max-width:300px}
+
+/* Bar viz */
+.v-bars{display:flex;flex-direction:column;gap:10px;width:100%}
+.v-br{display:flex;align-items:center;gap:12px}
+.v-bl{font-family:var(--font-m);font-size:.6rem;color:var(--off-2);width:52px;text-align:right;flex-shrink:0}
+.v-bt{flex:1;height:6px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden}
+.v-bf{height:100%;border-radius:3px;transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.v-bf.tc{background:var(--teal)}.v-bf.dm{background:rgba(45,212,191,.35)}.v-bf.am{background:var(--amber)}
+.pc.iv .v-bf{transform:scaleX(1)}
+.v-sr{display:flex;justify-content:space-between;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.v-s{text-align:center}
+.v-sn{font-family:var(--font-d);font-size:1.55rem;font-weight:300;color:var(--white);letter-spacing:-.02em;line-height:1}
+.v-sn .t{color:var(--teal)}
+.v-sl{font-size:.6rem;color:var(--off-2);margin-top:.2rem;letter-spacing:.05em}
+
+/* Lane viz */
+.v-lanes{display:flex;flex-direction:column;gap:8px;width:100%}
+.v-ln{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;background:rgba(255,255,255,0.02);border:1px solid var(--rule);transition:border-color .25s}
+.v-ln:hover{border-color:var(--rule-mid)}
+.ld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.lr{background:#EF4444;box-shadow:0 0 6px rgba(239,68,68,.6)}
+.la{background:var(--amber);box-shadow:0 0 6px rgba(245,158,11,.5)}
+.lg{background:#22C55E;box-shadow:0 0 6px rgba(34,197,94,.5)}
+.ln{font-family:var(--font-m);font-size:.65rem;color:var(--off);flex:1}
+.ls{font-family:var(--font-m);font-size:.65rem;font-weight:500}
+.sr{color:#EF4444}.sa{color:var(--amber)}.sg{color:#22C55E}
+
+/* Donut */
+.v-triage{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.v-dw{position:relative;width:160px;height:160px}
+.v-dw svg{transform:rotate(-90deg)}
+.dt{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:14}
+.dg{fill:none;stroke:#22C55E;stroke-width:14;stroke-dasharray:0 530;stroke-linecap:round;transition:stroke-dasharray 1.4s cubic-bezier(.16,1,.3,1) .2s}
+.da{fill:none;stroke:var(--amber);stroke-width:14;stroke-dasharray:0 530;stroke-linecap:round;stroke-dashoffset:-185;transition:stroke-dasharray 1.4s cubic-bezier(.16,1,.3,1) .4s}
+.dr{fill:none;stroke:#EF4444;stroke-width:14;stroke-dasharray:0 530;stroke-linecap:round;stroke-dashoffset:-370;transition:stroke-dasharray 1.4s cubic-bezier(.16,1,.3,1) .6s}
+.pc.iv .dg{stroke-dasharray:185 345}
+.pc.iv .da{stroke-dasharray:185 345}
+.pc.iv .dr{stroke-dasharray:50 480}
+.dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.dcn{font-family:var(--font-d);font-size:2rem;font-weight:300;color:var(--white);line-height:1}
+.dcl{font-size:.6rem;color:var(--off-2);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.v-leg{display:flex;gap:1.2rem}
+.li{display:flex;align-items:center;gap:.4rem;font-size:.66rem;color:var(--off-2)}
+.ld2{width:7px;height:7px;border-radius:50%}
+
+/* How */
+#how{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.hw-g{display:grid;grid-template-columns:repeat(5,1fr);margin-top:4rem;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.hw-i{padding:2rem 1.6rem;border-right:1px solid var(--rule);transition:background .3s}
+.hw-i:last-child{border-right:none}
+.hw-i:hover{background:rgba(45,212,191,0.03)}
+.hw-ic{font-size:1.3rem;margin-bottom:1rem;display:block}
+.hw-ti{font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--white);letter-spacing:-.01em;margin-bottom:.4rem}
+.hw-d{font-size:.78rem;color:var(--off-2);line-height:1.6;font-weight:300}
+
+/* Experience */
+#experience{background:var(--bg)}
+.ex-lay{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;margin-top:4rem}
+.ex-list{display:flex;flex-direction:column;gap:.75rem}
+.ex-i{padding:1.8rem 2rem;background:var(--bg-card);border:1px solid var(--rule);border-radius:10px;transition:border-color .25s}
+.ex-i:hover{border-color:var(--rule-mid)}
+.ex-org{font-family:var(--font-d);font-size:1.2rem;font-weight:600;color:var(--white);letter-spacing:-.01em;margin-bottom:.2rem}
+.ex-role{font-family:var(--font-m);font-size:.65rem;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.ex-desc{font-size:.85rem;color:var(--off);line-height:1.65;font-weight:300}
+.edu-c{background:var(--bg-card);border:1px solid var(--rule);border-radius:10px;padding:2.5rem;position:relative;overflow:hidden}
+.edu-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--teal),transparent)}
+.edu-lab{font-family:var(--font-m);font-size:.65rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.4rem}
+.edu-sch{font-family:var(--font-d);font-size:1.8rem;font-weight:300;color:var(--white);line-height:1.2;letter-spacing:-.02em;margin-bottom:.5rem}
+.edu-deg{font-size:.88rem;color:var(--off);font-weight:300;line-height:1.5;margin-bottom:1.8rem}
+.edu-pills{display:flex;gap:.5rem;flex-wrap:wrap}
+.ep{font-family:var(--font-m);font-size:.62rem;color:var(--teal);background:var(--teal-dim);padding:4px 12px;border-radius:20px;letter-spacing:.06em}
+.ep.am{color:var(--amber);background:rgba(245,158,11,0.1)}
+
+/* Contact */
+#contact{background:var(--bg-2);border-top:1px solid var(--rule);text-align:center}
+.ct-h{font-family:var(--font-d);font-size:clamp(2.8rem,6vw,6rem);font-weight:300;line-height:1.05;letter-spacing:-.03em;color:var(--white);margin:1.5rem auto 2.5rem;max-width:700px}
+.ct-h em{font-style:italic;color:var(--teal)}
+.ct-sub{font-size:.95rem;color:var(--off);font-weight:300;max-width:400px;margin:0 auto 3rem;line-height:1.7}
+.ct-btns{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+
+/* Footer */
+footer{background:var(--bg);border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-l{font-family:var(--font-d);font-size:.95rem;color:var(--off-2);font-weight:300}
+.ft-r{display:flex;gap:2rem}
+.ft-r a{font-size:.75rem;color:var(--off-2);letter-spacing:.04em;transition:color .2s}
+.ft-r a:hover{color:var(--teal)}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* Project pages */
+.pp{display:none}.pp.act{display:block}
+.pj-hero{min-height:50vh;display:flex;align-items:flex-end;padding:120px 3rem 4rem;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.pj-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:72px 72px;opacity:.5}
+.pj-hi{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%}
+.bk{font-family:var(--font-m);font-size:.68rem;color:var(--teal);letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;margin-bottom:2rem;transition:gap .2s}
+.bk:hover{gap:.8rem}
+.pj-ti{font-family:var(--font-d);font-size:clamp(2.2rem,5vw,4.5rem);font-weight:300;line-height:1.05;letter-spacing:-.02em;color:var(--white);max-width:700px;margin-bottom:.75rem}
+.pj-sub{font-size:1rem;color:var(--off);font-weight:300;margin-bottom:2rem}
+.pj-body{padding:5rem 3rem}
+.pj-bi{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr;gap:5rem}
+.ps{margin-bottom:3rem}
+.ps-lab{font-family:var(--font-m);font-size:.62rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:.75rem}
+.ps-ti{font-family:var(--font-d);font-size:1.35rem;font-weight:600;color:var(--white);margin-bottom:.7rem;letter-spacing:-.01em}
+.ps-b{font-size:.92rem;color:var(--off);line-height:1.8;font-weight:300}
+.rec{background:var(--teal-dim);border:1px solid rgba(45,212,191,.15);border-left:2px solid var(--teal);border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;font-size:.9rem;color:var(--white);font-style:italic;line-height:1.7;font-family:var(--font-d);font-weight:300}
+.lim{padding:.75rem 0;border-bottom:1px solid var(--rule);font-size:.84rem;color:var(--off-2);line-height:1.6;font-weight:300}
+.lim:last-child{border-bottom:none}
+.sb{position:sticky;top:90px;height:fit-content}
+.sbc{background:var(--bg-card);border:1px solid var(--rule);border-radius:8px;padding:1.5rem;margin-bottom:1rem}
+.sbt{font-family:var(--font-m);font-size:.6rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--rule)}
+.rr{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.9rem}
+.rn{font-family:var(--font-d);font-size:1.8rem;font-weight:300;color:var(--white);letter-spacing:-.02em;line-height:1}
+.rn .t{color:var(--teal)}
+.rl{font-size:.73rem;color:var(--off-2);line-height:1.35}
+.sp{display:inline-block;font-family:var(--font-m);font-size:.62rem;color:var(--off);background:rgba(255,255,255,0.05);border:1px solid var(--rule);padding:3px 9px;border-radius:3px;margin:0 4px 6px 0;letter-spacing:.04em}
+.sl{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--teal);font-weight:500;padding:.5rem 0;border-bottom:1px solid var(--rule);transition:gap .2s}
+.sl:last-child{border-bottom:none}
+.sl:hover{gap:.75rem}
+
+/* Responsive */
+@media(max-width:900px){
+  nav,.sec,#home,.proof{padding-left:1.5rem;padding-right:1.5rem}
+  .p-in{grid-template-columns:repeat(3,1fr)}
+  .t-head{grid-template-columns:1fr;gap:1.5rem}
+  .pc{grid-template-columns:1fr}
+  .pc-info{border-right:none}
+  .pc-vis{min-height:220px;border-top:1px solid var(--rule)}
+  .hw-g{grid-template-columns:1fr 1fr}
+  .hw-i{border-bottom:1px solid var(--rule)}
+  .ex-lay{grid-template-columns:1fr;gap:2rem}
+  .pj-bi{grid-template-columns:1fr}
+  .sb{position:static}
+  footer{flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .p-in{grid-template-columns:1fr 1fr}
+  .hw-g{grid-template-columns:1fr}
+  .h-h1{font-size:2.8rem}
+  .n-links li:not(:last-child){display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="cur-r"></div>
+
+<!-- ═══ MAIN ═══════════════════════════════════════════════════ -->
+<div id="ms">
+
+<nav id="nav">
+  <div class="n-logo">Deekshita<span>.</span></div>
+  <ul class="n-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#tools">Decision Tools</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="n-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="home">
+  <div class="hg"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="h-wrap">
+    <div class="h-ey">Supply Chain &amp; Operations Analyst</div>
+    <h1 class="h-h1">I build <em>decision tools</em><br>for demand planning,<br>trade compliance &amp;<br>transportation risk.</h1>
+    <div class="h-bot">
+      <p class="h-sub">Thunderbird School of Global Management, ASU.<br>Three live deployed tools. Real decisions. Real data.</p>
+      <div class="h-btns">
+        <a href="#tools" class="bg">View Decision Tools ↓</a>
+        <a href="#" class="bs">Download Resume</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Proof strip -->
+<div class="proof">
+  <div class="p-in">
+    <div class="p-item"><div class="p-num">27.2<span class="ac">%</span></div><div class="p-lab">Forecast error<br>reduction</div></div>
+    <div class="p-item"><div class="p-num">$37</div><div class="p-lab">Freed per SKU<br>in safety stock</div></div>
+    <div class="p-item"><div class="p-num">15</div><div class="p-lab">Freight corridors<br>monitored</div></div>
+    <div class="p-item"><div class="p-num">25</div><div class="p-lab">SKUs triaged<br>per manifest</div></div>
+    <div class="p-item"><div class="p-num">3</div><div class="p-lab">Live deployed<br>tools</div></div>
+  </div>
+</div>
+
+<!-- Decision Tools -->
+<section id="tools" class="sec">
+  <div class="s-in">
+    <div class="t-head rv">
+      <div>
+        <div class="s-ey">Decision Tools</div>
+        <h2 class="s-h2">Three tools.<br><em>Three decisions.</em><br>All live.</h2>
+      </div>
+      <p class="t-desc">Built during an MBA at Thunderbird School of Global Management, ASU. Each tool solves a specific decision problem in supply chain, logistics, and trade operations — and is publicly accessible right now.</p>
+    </div>
+    <div class="p-cards">
+
+      <!-- Card 1 -->
+      <div class="pc rv" id="pc1">
+        <div class="pc-info">
+          <div>
+            <div class="pc-meta"><span class="pc-n">01</span><span class="pc-tag">Forecasting</span></div>
+            <div class="pc-ti">Rural Demand<br>Proxy Engine</div>
+            <div class="pc-su">Cold start inventory planning for new fulfillment locations with no sales history.</div>
+            <div class="pc-dec">
+              <div class="pc-dl">Decision supported</div>
+              <div class="pc-dt">What to stock on day one.</div>
+            </div>
+          </div>
+          <div class="pc-btns">
+            <a href="https://rural-demand-proxy-ktqx46gyqeihdym2jbianq.streamlit.app" target="_blank" class="pb pb-l">↗ Live App</a>
+            <a href="#" class="pb pb-o" onclick="showP('p1');return false">Case Study</a>
+            <a href="https://github.com/deekshitasaipatibandla/rural-demand-proxy" target="_blank" class="pb pb-o">GitHub</a>
+          </div>
+        </div>
+        <div class="pc-vis">
+          <div class="v-wrap">
+            <div class="v-bars">
+              <div class="v-br"><div class="v-bl">Proxy</div><div class="v-bt"><div class="v-bf tc" style="width:94.1%"></div></div></div>
+              <div class="v-br"><div class="v-bl">Baseline</div><div class="v-bt"><div class="v-bf dm" style="width:68%"></div></div></div>
+              <div class="v-br"><div class="v-bl">Naive</div><div class="v-bt"><div class="v-bf dm" style="width:41%"></div></div></div>
+              <div class="v-br"><div class="v-bl">Match</div><div class="v-bt"><div class="v-bf am" style="width:94.1%"></div></div></div>
+            </div>
+            <div class="v-sr">
+              <div class="v-s"><div class="v-sn">94<span class="t">%</span></div><div class="v-sl">Match</div></div>
+              <div class="v-s"><div class="v-sn">27<span class="t">%↓</span></div><div class="v-sl">Error</div></div>
+              <div class="v-s"><div class="v-sn">$37</div><div class="v-sl">Per SKU</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="pc rv" id="pc2">
+        <div class="pc-info">
+          <div>
+            <div class="pc-meta"><span class="pc-n">02</span><span class="pc-tag">Risk Scoring</span></div>
+            <div class="pc-ti">Intermodal Lane<br>Risk Agent</div>
+            <div class="pc-su">Pre-booking freight risk scoring across major US intermodal corridors.</div>
+            <div class="pc-dec">
+              <div class="pc-dl">Decision supported</div>
+              <div class="pc-dt">Which corridor to avoid before tendering freight.</div>
+            </div>
+          </div>
+          <div class="pc-btns">
+            <a href="https://intermodal-lane-risk-agent-7y4ts5ve9lcmitrpv3bk3v.streamlit.app" target="_blank" class="pb pb-l">↗ Live App</a>
+            <a href="#" class="pb pb-o" onclick="showP('p2');return false">Case Study</a>
+            <a href="https://github.com/deekshitasaipatibandla/intermodal-lane-risk-agent" target="_blank" class="pb pb-o">GitHub</a>
+          </div>
+        </div>
+        <div class="pc-vis">
+          <div class="v-wrap">
+            <div class="v-lanes">
+              <div class="v-ln"><div class="ld lr"></div><div class="ln">Chicago → LA</div><div class="ls sr">HIGH</div></div>
+              <div class="v-ln"><div class="ld lr"></div><div class="ln">Dallas → Newark</div><div class="ls sr">HIGH</div></div>
+              <div class="v-ln"><div class="ld la"></div><div class="ln">Memphis → Seattle</div><div class="ls sa">MED</div></div>
+              <div class="v-ln"><div class="ld lg"></div><div class="ln">Atlanta → Denver</div><div class="ls sg">LOW</div></div>
+              <div class="v-ln"><div class="ld lg"></div><div class="ln">KC → Philadelphia</div><div class="ls sg">LOW</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="pc rv" id="pc3">
+        <div class="pc-info">
+          <div>
+            <div class="pc-meta"><span class="pc-n">03</span><span class="pc-tag">Compliance Triage</span></div>
+            <div class="pc-ti">De Minimis<br>Compliance Defender</div>
+            <div class="pc-su">Low-value import compliance triage for trade operations teams.</div>
+            <div class="pc-dec">
+              <div class="pc-dl">Decision supported</div>
+              <div class="pc-dt">Which SKUs need broker escalation or analyst review.</div>
+            </div>
+          </div>
+          <div class="pc-btns">
+            <a href="https://de-minimis-compliance-defender-3rnnvl4ruxqzcmcbabfsii.streamlit.app" target="_blank" class="pb pb-l">↗ Live App</a>
+            <a href="#" class="pb pb-o" onclick="showP('p3');return false">Case Study</a>
+            <a href="https://github.com/deekshitasaipatibandla/de-minimis-compliance-defender" target="_blank" class="pb pb-o">GitHub</a>
+          </div>
+        </div>
+        <div class="pc-vis">
+          <div class="v-wrap">
+            <div class="v-triage">
+              <div class="v-dw">
+                <svg width="160" height="160" viewBox="0 0 160 160">
+                  <circle class="dt" cx="80" cy="80" r="62"/>
+                  <circle class="dg" cx="80" cy="80" r="62"/>
+                  <circle class="da" cx="80" cy="80" r="62"/>
+                  <circle class="dr" cx="80" cy="80" r="62"/>
+                </svg>
+                <div class="dc"><div class="dcn">25</div><div class="dcl">SKUs</div></div>
+              </div>
+              <div class="v-leg">
+                <div class="li"><div class="ld2" style="background:#22C55E"></div>11 Clear</div>
+                <div class="li"><div class="ld2" style="background:#F59E0B"></div>11 Review</div>
+                <div class="li"><div class="ld2" style="background:#EF4444"></div>3 High Risk</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How I Work -->
+<section id="how" class="sec">
+  <div class="s-in">
+    <div class="rv">
+      <div class="s-ey">Approach</div>
+      <h2 class="s-h2">How I <em>Work</em></h2>
+    </div>
+    <div class="hw-g rv">
+      <div class="hw-i"><span class="hw-ic">📈</span><div class="hw-ti">Forecasting</div><div class="hw-d">Proxy-based demand initialization for cold-start and low-history planning problems.</div></div>
+      <div class="hw-i"><span class="hw-ic">⚠️</span><div class="hw-ti">Risk Scoring</div><div class="hw-d">Pre-booking freight risk quantification across lanes, origins, and disruption signals.</div></div>
+      <div class="hw-i"><span class="hw-ic">📊</span><div class="hw-ti">Dashboarding</div><div class="hw-d">Operational visibility tools that surface the right signal at the right decision point.</div></div>
+      <div class="hw-i"><span class="hw-ic">🛃</span><div class="hw-ti">Compliance Triage</div><div class="hw-d">Ranked review queues that separate escalation, analyst review, and clearable items.</div></div>
+      <div class="hw-i"><span class="hw-ic">🎯</span><div class="hw-ti">Decision Support</div><div class="hw-d">Turning data into a specific, defensible recommendation — not just a chart.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" class="sec">
+  <div class="s-in">
+    <div class="rv"><div class="s-ey">Background</div><h2 class="s-h2"><em>Experience</em></h2></div>
+    <div class="ex-lay rv">
+      <div class="ex-list">
+        <div class="ex-i"><div class="ex-org">Arizona State University</div><div class="ex-role">IT Service Desk</div><div class="ex-desc">Analyzed ticket patterns, supported reporting, and improved workflow visibility for service operations.</div></div>
+        <div class="ex-i"><div class="ex-org">WeReach</div><div class="ex-role">Analytics</div><div class="ex-desc">Used SQL, Excel, and reporting to turn survey and operational data into stakeholder-ready analysis.</div></div>
+      </div>
+      <div class="edu-c">
+        <div class="edu-lab">Education</div>
+        <div class="edu-sch">Thunderbird School of Global Management</div>
+        <div class="edu-deg">Master of Business Administration<br>Supply Chain &amp; Operations · Arizona State University</div>
+        <div class="edu-pills">
+          <span class="ep">MBA · In Progress</span>
+          <span class="ep am">Supply Chain</span>
+          <span class="ep">Trade Operations</span>
+          <span class="ep">Demand Planning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="sec">
+  <div class="s-in" style="text-align:center">
+    <div class="s-ey" style="justify-content:center">Get in Touch</div>
+    <div class="ct-h">Let's talk<br><em>supply chain.</em></div>
+    <p class="ct-sub">Open to full-time roles in supply chain analytics, trade operations, logistics, and decision support.</p>
+    <div class="ct-btns">
+      <a href="mailto:deekshitasaipatibandla@gmail.com" class="bs">✉ Email</a>
+      <a href="https://linkedin.com/in/deekshitapatibandla" target="_blank" class="bg">in LinkedIn</a>
+      <a href="https://github.com/deekshitasaipatibandla" target="_blank" class="bg">⌥ GitHub</a>
+      <a href="#" class="bg">↓ Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-l">Deekshita Sai Patibandla · Supply Chain &amp; Operations Analyst<br><span style="font-size:.75rem;opacity:.6">Demand Planning · Trade Ops · Logistics Analytics</span></div>
+  <div class="ft-r">
+    <a href="https://linkedin.com/in/deekshitapatibandla" target="_blank">LinkedIn</a>
+    <a href="https://github.com/deekshitasaipatibandla" target="_blank">GitHub</a>
+    <a href="mailto:deekshitasaipatibandla@gmail.com">Email</a>
+  </div>
+</footer>
+</div>
+
+<!-- ═══ PROJECT PAGE: P1 ════════════════════════════════════════ -->
+<div id="p1" class="pp">
+<nav style="position:fixed;top:0;left:0;right:0;z-index:500;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(13,15,18,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule)">
+  <div class="n-logo" style="font-family:var(--font-d);font-size:1.1rem;font-weight:600">Deekshita<span style="color:var(--teal)">.</span></div>
+  <span class="bk" onclick="showMain()" style="margin:0">← Back to Portfolio</span>
+</nav>
+<div class="pj-hero">
+  <div class="pj-hi">
+    <div class="bk" onclick="showMain()">← Back to Decision Tools</div>
+    <div style="font-family:var(--font-m);font-size:.62rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">01 — Forecasting</div>
+    <div class="pj-ti">Rural Demand Proxy Engine</div>
+    <div class="pj-sub">Cold start inventory planning for new fulfillment locations</div>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <a href="https://rural-demand-proxy-ktqx46gyqeihdym2jbianq.streamlit.app" target="_blank" class="bs">↗ Live App</a>
+      <a href="https://github.com/deekshitasaipatibandla/rural-demand-proxy" target="_blank" class="bg">GitHub</a>
+      <a href="https://colab.research.google.com/drive/1GSK9APEkVOnOmvMrUwDwOzXLDyVO5Jml?usp=sharing" target="_blank" class="bg">📓 Notebook</a><p class="ps-b">New locations have no sales history, but planners still need opening inventory decisions. Without a demand signal, teams either over-stock — tying up working capital — or under-stock, missing early demand and damaging new market relationships.</p></div>
+      <div class="ps"><span class="ps-lab">Why It Matters</span><p class="ps-b">Opening inventory decisions at low-history sites directly affect SKU availability, safety stock costs, and the speed at which a new location reaches operational maturity. Getting day-one wrong is expensive and hard to recover from.</p></div>
+      <div class="ps"><span class="ps-lab">Who This Is For</span><p class="ps-b">Inventory planners, demand planners, and supply chain analysts responsible for new site launches — especially in markets where sales data is sparse, seasonal, or unavailable.</p></div>
+      <div class="ps"><span class="ps-lab">What I Built</span><p class="ps-b">A proxy-based demand initialization engine that identifies the closest historical analog (sister store) for a new location using demographic, geographic, and operational similarity scores, then applies safety stock simulation to generate opening inventory recommendations with quantified uncertainty bands.</p></div>
+      <div class="ps"><span class="ps-lab">How It Works</span><p class="ps-b">The tool ingests location attributes, scores similarity across a configurable set of features, selects the best-fit analog store, scales demand patterns to the new location, and runs a Monte Carlo safety stock simulation to surface a recommended stocking range with confidence intervals.</p></div>
+      <div class="ps"><span class="ps-lab">Business Recommendation</span><div class="rec">Use proxy-based demand initialization plus safety stock simulation before opening low-history sites. The analog matching approach materially outperforms blank-slate planning and reduces the cost of opening inventory error.</div></div>
+      <div class="ps"><span class="ps-lab">Limitations</span>
+        <div class="lim">Proxy quality depends on the richness of the analog store database — sparse networks reduce match quality.</div>
+        <div class="lim">Safety stock simulation assumes demand follows modeled distributions; highly seasonal or lumpy demand requires additional tuning.</div>
+        <div class="lim">Does not account for local promotional calendars or macro demand shocks at launch.</div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sbc"><div class="sbt">Results</div>
+        <div class="rr"><div class="rn">94.1<span class="t">%</span></div><div class="rl">Sister store match</div></div>
+        <div class="rr"><div class="rn">27.2<span class="t">%</span></div><div class="rl">Forecast error reduction</div></div>
+        <div class="rr"><div class="rn">30<span class="t">%</span></div><div class="rl">Safety stock reduction</div></div>
+        <div class="rr"><div class="rn">~$37</div><div class="rl">Freed per SKU</div></div>
+      </div>
+      <div class="sbc"><div class="sbt">Stack</div><span class="sp">Python</span><span class="sp">Streamlit</span><span class="sp">pandas</span><span class="sp">Monte Carlo</span><span class="sp">scikit-learn</span></div>
+      <div class="sbc"><div class="sbt">Links</div>
+        <a href="https://rural-demand-proxy-ktqx46gyqeihdym2jbianq.streamlit.app" target="_blank" class="sl">↗ Live App</a>
+        <a href="https://github.com/deekshitasaipatibandla/rural-demand-proxy" target="_blank" class="sl">⌥ GitHub Repo</a>
+        <a href="https://colab.research.google.com/drive/1GSK9APEkVOnOmvMrUwDwOzXLDyVO5Jml?usp=sharing" target="_blank" class="sl">📓 Colab Notebook</a>
+      </div>
+      <div class="sbc"><div class="sbt">Decision Supported</div><p style="font-size:.85rem;color:var(--off);line-height:1.6;font-weight:300">What to stock on day one at a new fulfillment location with no sales history.</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ PROJECT PAGE: P2 ════════════════════════════════════════ -->
+<div id="p2" class="pp">
+<nav style="position:fixed;top:0;left:0;right:0;z-index:500;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(13,15,18,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule)">
+  <div class="n-logo" style="font-family:var(--font-d);font-size:1.1rem;font-weight:600">Deekshita<span style="color:var(--teal)">.</span></div>
+  <span class="bk" onclick="showMain()" style="margin:0">← Back to Portfolio</span>
+</nav>
+<div class="pj-hero">
+  <div class="pj-hi">
+    <div class="bk" onclick="showMain()">← Back to Decision Tools</div>
+    <div style="font-family:var(--font-m);font-size:.62rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">02 — Risk Scoring</div>
+    <div class="pj-ti">Intermodal Lane Risk Agent</div>
+    <div class="pj-sub">Pre-booking freight risk scoring across major US corridors</div>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <a href="https://intermodal-lane-risk-agent-7y4ts5ve9lcmitrpv3bk3v.streamlit.app" target="_blank" class="bs">↗ Live App</a>
+      <a href="https://github.com/deekshitasaipatibandla/intermodal-lane-risk-agent" target="_blank" class="bg">GitHub</a><p class="ps-b">A lane can look cheap and still carry high disruption risk before freight is tendered. Standard rate comparison tools show cost, not risk — leaving freight teams exposed to delays, re-routing costs, and service failures that don't appear until after booking.</p></div>
+      <div class="ps"><span class="ps-lab">Why It Matters</span><p class="ps-b">Pre-booking risk scoring changes the freight decision from price-only to price-plus-risk. A lane that costs 5% more but carries 40% less disruption exposure is often the better choice — but only if you can quantify the tradeoff before tendering.</p></div>
+      <div class="ps"><span class="ps-lab">Who This Is For</span><p class="ps-b">Freight analysts, transportation managers, and logistics operations teams who book intermodal moves across major US corridors and want to surface risk before committing to a carrier and lane.</p></div>
+      <div class="ps"><span class="ps-lab">What I Built</span><p class="ps-b">A real-time lane risk scoring agent that monitors 15 major US intermodal corridors, ingests live disruption signals, scores each lane on a composite risk index, and surfaces alternate routes when risk exceeds threshold.</p></div>
+      <div class="ps"><span class="ps-lab">How It Works</span><p class="ps-b">The agent queries live data feeds for each corridor, applies a weighted risk model across disruption categories, produces a normalized risk score per lane with a plain-English flag reason, and ranks corridors from lowest to highest risk exposure for the current booking window.</p></div>
+      <div class="ps"><span class="ps-lab">Business Recommendation</span><div class="rec">Use lane risk scoring before booking to avoid choosing the cheapest option when disruption exposure is materially higher. A 5-minute pre-booking check against live corridor risk can prevent service failures that take weeks to recover from.</div></div>
+      <div class="ps"><span class="ps-lab">Limitations</span>
+        <div class="lim">Risk scores reflect conditions at query time — dynamic events can change rapidly after booking.</div>
+        <div class="lim">Alternate route suggestions are directional, not fully optimized for cost-risk tradeoff.</div>
+        <div class="lim">Coverage limited to 15 corridors in the current build.</div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sbc"><div class="sbt">Results</div>
+        <div class="rr"><div class="rn">15</div><div class="rl">Corridors monitored</div></div>
+        <div class="rr"><div class="rn">2</div><div class="rl">High-risk lanes flagged</div></div>
+        <div class="rr"><div class="rn">1</div><div class="rl">Active hazard surfaced</div></div>
+        <div class="rr"><div class="rn" style="font-size:1.2rem;color:var(--teal)">✓</div><div class="rl">Alternate route auto-surfaced</div></div>
+      </div>
+      <div class="sbc"><div class="sbt">Stack</div><span class="sp">Python</span><span class="sp">Streamlit</span><span class="sp">Claude API</span><span class="sp">Live feeds</span><span class="sp">Risk scoring</span></div>
+      <div class="sbc"><div class="sbt">Links</div>
+        <a href="https://intermodal-lane-risk-agent-7y4ts5ve9lcmitrpv3bk3v.streamlit.app" target="_blank" class="sl">↗ Live App</a>
+        <a href="https://github.com/deekshitasaipatibandla/intermodal-lane-risk-agent" target="_blank" class="sl">⌥ GitHub Repo</a>
+      </div>
+      <div class="sbc"><div class="sbt">Decision Supported</div><p style="font-size:.85rem;color:var(--off);line-height:1.6;font-weight:300">Which corridor to avoid before tendering freight.</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ PROJECT PAGE: P3 ════════════════════════════════════════ -->
+<div id="p3" class="pp">
+<nav style="position:fixed;top:0;left:0;right:0;z-index:500;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(13,15,18,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule)">
+  <div class="n-logo" style="font-family:var(--font-d);font-size:1.1rem;font-weight:600">Deekshita<span style="color:var(--teal)">.</span></div>
+  <span class="bk" onclick="showMain()" style="margin:0">← Back to Portfolio</span>
+</nav>
+<div class="pj-hero">
+  <div class="pj-hi">
+    <div class="bk" onclick="showMain()">← Back to Decision Tools</div>
+    <div style="font-family:var(--font-m);font-size:.62rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">03 — Compliance Triage</div>
+    <div class="pj-ti">De Minimis Compliance Defender</div>
+    <div class="pj-sub">Low-value import compliance triage for trade operations teams</div>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <a href="https://de-minimis-compliance-defender-3rnnvl4ruxqzcmcbabfsii.streamlit.app" target="_blank" class="bs">↗ Live App</a>
+      <a href="https://github.com/deekshitasaipatibandla/de-minimis-compliance-defender" target="_blank" class="bg">GitHub</a>
+    </div>
+  </div>
+</div>
+<div class="pj-body">
+  <div class="pj-bi">
+    <div>
+      <div class="ps"><span class="ps-lab">Business Problem</span><div class="ps-ti">The Triage Problem</div><p class="ps-b">Low-value shipments require faster SKU-level review when policy rules, origin exposure, and classification uncertainty increase compliance workload. The May 2025 executive action suspending de minimis treatment for all PRC-origin shipments turned a once-simple clearance process into a line-by-line review problem.</p></div>
+      <div class="ps"><span class="ps-lab">Why It Matters</span><p class="ps-b">Without triage, compliance analysts review every SKU at the same depth regardless of actual risk. High-risk items get buried alongside items that could clear immediately. Manual review doesn't scale as manifest volume grows.</p></div>
+      <div class="ps"><span class="ps-lab">Who This Is For</span><p class="ps-b">Trade compliance analysts, customs brokers, and import operations teams managing low-value shipment manifests with mixed origins — particularly teams dealing with increased PRC-origin scrutiny post-May 2025.</p></div>
+      <div class="ps"><span class="ps-lab">What I Built</span><p class="ps-b">A live AI-powered compliance triage tool. Analysts upload a manifest CSV; the tool evaluates each SKU against a multi-factor rule engine powered by Claude Haiku and the USITC HTS Schedule, then returns a three-tier ranked review queue with flag reasons, HTS classification candidates, and duty exposure estimates.</p></div>
+      <div class="ps"><span class="ps-lab">How It Works</span><p class="ps-b">The rule engine checks each SKU against four risk vectors: origin country, declared value, description quality, and supplier identity. Claude Haiku provides candidate HTS chapter and heading with a confidence label. Results are sorted by risk score into an actionable review queue.</p></div>
+      <div class="ps"><span class="ps-lab">Business Recommendation</span><div class="rec">Use a ranked review queue to separate broker escalation, analyst review, and clearable SKUs before customs workflow slows down. In the demo run, 44% of SKUs cleared without analyst action — that's the efficiency gain triage delivers.</div></div>
+      <div class="ps"><span class="ps-lab">Limitations</span>
+        <div class="lim">AI-suggested classification only — not a licensed customs ruling. All HTS suggestions must be validated before clearance.</div>
+        <div class="lim">Duty rates are illustrative. Section 301 rates change frequently; verify against the official USITC schedule.</div>
+        <div class="lim">Policy snapshot reflects August 2025 guidance. Trade rules change — verify all determinations before clearance.</div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sbc"><div class="sbt">Results — Demo Run</div>
+        <div class="rr"><div class="rn">25</div><div class="rl">SKUs processed</div></div>
+        <div class="rr"><div class="rn" style="color:#EF4444">3</div><div class="rl">🔴 High Risk — escalate</div></div>
+        <div class="rr"><div class="rn" style="color:#F59E0B">11</div><div class="rl">🟡 Needs Review</div></div>
+        <div class="rr"><div class="rn" style="color:#22C55E">11</div><div class="rl">🟢 Cleared</div></div>
+        <div class="rr"><div class="rn">56<span class="t">%</span></div><div class="rl">Flag rate</div></div>
+      </div>
+      <div class="sbc"><div class="sbt">Stack</div><span class="sp">Python</span><span class="sp">Streamlit</span><span class="sp">Claude Haiku</span><span class="sp">USITC HTS</span><span class="sp">CBP Guidance</span><span class="sp">pandas</span></div>
+      <div class="sbc"><div class="sbt">Links</div>
+        <a href="https://de-minimis-compliance-defender-3rnnvl4ruxqzcmcbabfsii.streamlit.app" target="_blank" class="sl">↗ Live App</a>
+        <a href="https://github.com/deekshitasaipatibandla/de-minimis-compliance-defender" target="_blank" class="sl">⌥ GitHub Repo</a>
+      </div>
+      <div class="sbc"><div class="sbt">Decision Supported</div><p style="font-size:.85rem;color:var(--off);line-height:1.6;font-weight:300">Which SKUs need broker escalation or analyst review before customs clearance.</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Custom cursor
+const cur=document.getElementById('cur'),cr=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.bk').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';cr.style.width='50px';cr.style.height='50px';cr.style.borderColor='rgba(45,212,191,.7)'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cr.style.width='36px';cr.style.height='36px';cr.style.borderColor='rgba(45,212,191,.4)'});
+});
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
+
+// IntersectionObserver — reveals + in-view
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,d=parseInt(el.dataset.d||0);
+      setTimeout(()=>el.classList.add('vis','iv'),d);
+      io.unobserve(el);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.rv,.pc').forEach((el,i)=>{el.dataset.d=(i%3)*100;io.observe(el)});
+
+// Project page navigation
+function showP(id){document.getElementById('ms').style.display='none';document.querySelectorAll('.pp').forEach(p=>p.classList.remove('act'));document.getElementById(id).classList.add('act');window.scrollTo({top:0})}
+function showMain(){document.getElementById('ms').style.display='block';document.querySelectorAll('.pp').forEach(p=>p.classList.remove('act'));window.scrollTo({top:0})}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').fo

@@ -1,970 +1,527 @@
-/* ============================================
-   Deekshita Sai Patibandla — Portfolio
-   Supply Chain & Operations Analyst
-   ============================================ */
-
-/* --- Reset & Base --- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #FAFAFA;
-  --white: #FFFFFF;
-  --navy: #1B2A4A;
-  --charcoal: #2D3748;
-  --teal: #2E8B8B;
-  --teal-light: #E8F4F4;
-  --teal-dark: #236B6B;
-  --gray-100: #F7F8FA;
-  --gray-200: #EDF0F4;
-  --gray-300: #E2E5EA;
-  --gray-400: #C4C9D2;
-  --gray-500: #8892A0;
-  --gray-600: #6B7280;
-  --gray-700: #4A5568;
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --max-w: 1140px;
-  --section-py: 88px;
-  --radius: 10px;
-  --radius-sm: 6px;
-  --shadow-card: 0 1px 3px rgba(27,42,74,0.06), 0 4px 16px rgba(27,42,74,0.04);
-  --shadow-card-hover: 0 2px 8px rgba(27,42,74,0.08), 0 8px 28px rgba(27,42,74,0.06);
-  --shadow-screenshot: 0 2px 12px rgba(27,42,74,0.10), 0 8px 32px rgba(27,42,74,0.06);
-  --transition: 0.25s ease;
-}
-
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  font-family: var(--font);
-  color: var(--charcoal);
-  background: var(--bg);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-img { max-width: 100%; height: auto; display: block; }
-a { color: var(--teal); text-decoration: none; transition: color var(--transition); }
-a:hover { color: var(--teal-dark); }
-
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
-
-/* --- Typography --- */
-h1, h2, h3, h4 { color: var(--navy); line-height: 1.25; font-weight: 600; }
-h1 { font-size: 2.75rem; letter-spacing: -0.03em; }
-h2 { font-size: 2rem; letter-spacing: -0.02em; }
-h3 { font-size: 1.35rem; letter-spacing: -0.01em; }
-h4 { font-size: 1.1rem; }
-
-.section-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 12px;
-}
-
-.section-headline { margin-bottom: 16px; }
-.section-subline { color: var(--gray-600); font-size: 1.05rem; max-width: 680px; line-height: 1.7; }
-
-/* --- Navigation --- */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(250,250,250,0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--gray-200);
-  height: 64px;
-}
-
-.nav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 32px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-brand {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--navy);
-  letter-spacing: -0.01em;
-}
-
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--gray-600);
-  transition: color var(--transition);
-  letter-spacing: 0.01em;
-}
-.nav-links a:hover { color: var(--navy); }
-
-.nav-hamburger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
-.nav-hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--navy);
-  margin: 5px 0;
-  transition: var(--transition);
-}
-
-/* --- Hero --- */
-.hero {
-  padding-top: 140px;
-  padding-bottom: var(--section-py);
-  min-height: 88vh;
-  display: flex;
-  align-items: center;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.hero-text h1 { margin-bottom: 20px; }
-.hero-subheadline {
-  font-size: 1.15rem;
-  color: var(--gray-600);
-  line-height: 1.7;
-  margin-bottom: 36px;
-  max-width: 520px;
-}
-
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 28px;
-  font-size: 0.92rem;
-  font-weight: 550;
-  font-family: var(--font);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition);
-  cursor: pointer;
-  border: none;
-  letter-spacing: 0.01em;
-}
-
-.btn-primary {
-  background: var(--navy);
-  color: #fff;
-}
-.btn-primary:hover { background: #243656; color: #fff; transform: translateY(-1px); }
-
-.btn-secondary {
-  background: transparent;
-  color: var(--navy);
-  border: 1.5px solid var(--gray-300);
-}
-.btn-secondary:hover { border-color: var(--navy); transform: translateY(-1px); }
-
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.hero-collage {
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-}
-
-.hero-collage-img {
-  width: 100%;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-screenshot);
-}
-
-/* Stacked screenshot cards in hero */
-.hero-screenshots {
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  height: 400px;
-}
-
-.hero-screenshot {
-  position: absolute;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-screenshot);
-  overflow: hidden;
-  transition: transform 0.4s ease;
-  border: 1px solid var(--gray-200);
-}
-
-.hero-screenshot:nth-child(1) {
-  width: 82%;
-  top: 0;
-  left: 0;
-  z-index: 3;
-}
-.hero-screenshot:nth-child(2) {
-  width: 72%;
-  top: 60px;
-  right: 0;
-  z-index: 2;
-  opacity: 0.92;
-}
-.hero-screenshot:nth-child(3) {
-  width: 65%;
-  bottom: 0;
-  left: 30px;
-  z-index: 1;
-  opacity: 0.84;
-}
-
-.hero-screenshot img {
-  width: 100%;
-  display: block;
-}
-
-/* --- Proof Strip --- */
-.proof-strip {
-  background: var(--gray-100);
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-  padding: 48px 0;
-}
-
-.proof-strip-inner {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-  text-align: center;
-}
-
-.proof-item {}
-
-.proof-number {
-  font-size: 2.1rem;
-  font-weight: 700;
-  color: var(--teal);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.proof-label {
-  font-size: 0.82rem;
-  color: var(--gray-600);
-  margin-top: 6px;
-  line-height: 1.4;
-  font-weight: 450;
-}
-
-/* --- Featured Decision Tools --- */
-.featured-tools {
-  padding: var(--section-py) 0;
-  padding-bottom: 100px;
-}
-
-.featured-tools-header {
-  margin-bottom: 56px;
-}
-
-.project-cards { display: flex; flex-direction: column; gap: 48px; }
-
-.project-card {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow var(--transition), transform var(--transition);
-}
-.project-card:hover {
-  box-shadow: var(--shadow-card-hover);
-  transform: translateY(-2px);
-}
-
-.project-card-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.project-screenshot {
-  background: var(--gray-100);
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 320px;
-  overflow: hidden;
-}
-
-.project-screenshot img {
-  width: 100%;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.project-content {
-  padding: 40px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.project-title {
-  font-size: 1.5rem;
-  font-weight: 650;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-
-.project-subtitle {
-  font-size: 0.95rem;
-  color: var(--gray-600);
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.project-decision {
-  font-size: 0.88rem;
-  color: var(--teal-dark);
-  font-weight: 550;
-  margin-bottom: 20px;
-  padding: 10px 16px;
-  background: var(--teal-light);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid var(--teal);
-}
-
-.project-decision span {
-  font-weight: 400;
-  color: var(--gray-700);
-}
-
-.project-metrics {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
-
-.project-metric {
-  text-align: left;
-}
-
-.project-metric-value {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.2;
-}
-
-.project-metric-label {
-  font-size: 0.75rem;
-  color: var(--gray-500);
-  font-weight: 450;
-  margin-top: 2px;
-}
-
-.project-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.btn-sm {
-  padding: 9px 18px;
-  font-size: 0.82rem;
-  font-weight: 550;
-  border-radius: var(--radius-sm);
-  font-family: var(--font);
-  transition: all var(--transition);
-  cursor: pointer;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.btn-sm-primary {
-  background: var(--navy);
-  color: #fff;
-}
-.btn-sm-primary:hover { background: #243656; color: #fff; }
-
-.btn-sm-outline {
-  background: transparent;
-  color: var(--navy);
-  border: 1.5px solid var(--gray-300);
-}
-.btn-sm-outline:hover { border-color: var(--navy); }
-
-/* --- How I Work --- */
-.how-i-work {
-  padding: var(--section-py) 0;
-  background: var(--gray-100);
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.how-i-work-header { margin-bottom: 48px; }
-
-.capabilities-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-}
-
-.capability-card {
-  background: var(--white);
-  padding: 32px 24px;
-  border-radius: var(--radius);
-  border: 1px solid var(--gray-200);
-  text-align: center;
-  transition: box-shadow var(--transition), transform var(--transition);
-}
-.capability-card:hover {
-  box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
-}
-
-.capability-icon {
-  width: 44px;
-  height: 44px;
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--teal-light);
-  border-radius: 10px;
-  color: var(--teal);
-}
-
-.capability-icon svg {
-  width: 22px;
-  height: 22px;
-  stroke: var(--teal);
-  fill: none;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.capability-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-
-.capability-desc {
-  font-size: 0.82rem;
-  color: var(--gray-600);
-  line-height: 1.55;
-}
-
-/* --- About --- */
-.about {
-  padding: var(--section-py) 0;
-}
-
-.about-inner {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 64px;
-  align-items: start;
-}
-
-.about-headline {
-  font-size: 1.85rem;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-}
-
-.about-body {
-  font-size: 1.05rem;
-  color: var(--gray-700);
-  line-height: 1.75;
-}
-
-/* --- Experience --- */
-.experience {
-  padding: var(--section-py) 0;
-  background: var(--gray-100);
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.experience-header { margin-bottom: 40px; }
-
-.experience-entries { display: flex; flex-direction: column; gap: 24px; }
-
-.experience-entry {
-  background: var(--white);
-  padding: 32px 36px;
-  border-radius: var(--radius);
-  border: 1px solid var(--gray-200);
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 32px;
-  align-items: start;
-}
-
-.experience-org {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--navy);
-}
-
-.experience-role {
-  font-size: 0.85rem;
-  color: var(--teal);
-  font-weight: 500;
-  margin-top: 4px;
-}
-
-.experience-desc {
-  font-size: 0.95rem;
-  color: var(--gray-700);
-  line-height: 1.65;
-}
-
-/* --- Contact --- */
-.contact {
-  padding: var(--section-py) 0;
-  padding-bottom: 100px;
-}
-
-.contact-inner {
-  max-width: 600px;
-}
-
-.contact h2 { margin-bottom: 16px; }
-.contact-body {
-  font-size: 1.05rem;
-  color: var(--gray-600);
-  margin-bottom: 36px;
-  line-height: 1.65;
-}
-
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.contact-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--navy);
-  transition: color var(--transition);
-  padding: 12px 20px;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-sm);
-  width: fit-content;
-  min-width: 320px;
-}
-.contact-link:hover { color: var(--teal); border-color: var(--teal); }
-
-.contact-link svg {
-  width: 18px;
-  height: 18px;
-  stroke: var(--gray-500);
-  fill: none;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  flex-shrink: 0;
-}
-.contact-link:hover svg { stroke: var(--teal); }
-
-/* --- Footer --- */
-.footer {
-  background: var(--navy);
-  color: rgba(255,255,255,0.7);
-  padding: 48px 0;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.footer-left {}
-.footer-brand {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 8px;
-}
-
-.footer-nav {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-}
-.footer-nav a {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.6);
-  transition: color var(--transition);
-}
-.footer-nav a:hover { color: #fff; }
-
-.footer-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.footer-social {
-  display: flex;
-  gap: 16px;
-  list-style: none;
-}
-.footer-social a {
-  color: rgba(255,255,255,0.5);
-  transition: color var(--transition);
-  display: flex;
-}
-.footer-social a:hover { color: #fff; }
-.footer-social svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
-
-.footer-copyright {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.4);
-}
-
-.back-to-top {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.5);
-  transition: color var(--transition);
-}
-.back-to-top:hover { color: #fff; }
-
-/* ============================================
-   Case Study Page Styles
-   ============================================ */
-
-.case-study-hero {
-  padding-top: 120px;
-  padding-bottom: 48px;
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.case-study-hero .section-label { margin-bottom: 16px; }
-
-.case-study-title {
-  font-size: 2.5rem;
-  letter-spacing: -0.03em;
-  margin-bottom: 12px;
-}
-
-.case-study-subtitle {
-  font-size: 1.15rem;
-  color: var(--gray-600);
-  margin-bottom: 32px;
-  line-height: 1.6;
-}
-
-.case-study-metrics-strip {
-  display: flex;
-  gap: 40px;
-  padding: 28px 0;
-  border-top: 1px solid var(--gray-200);
-  flex-wrap: wrap;
-}
-
-.cs-metric {}
-.cs-metric-value {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--teal);
-  line-height: 1.2;
-}
-.cs-metric-label {
-  font-size: 0.78rem;
-  color: var(--gray-500);
-  font-weight: 450;
-  margin-top: 4px;
-}
-
-.case-study-body {
-  padding: 64px 0;
-}
-
-.cs-content {
-  max-width: 780px;
-  margin: 0 auto;
-}
-
-.cs-section {
-  margin-bottom: 56px;
-}
-
-.cs-section h3 {
-  font-size: 1.25rem;
-  color: var(--navy);
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--teal-light);
-}
-
-.cs-section p {
-  font-size: 0.98rem;
-  color: var(--gray-700);
-  line-height: 1.75;
-  margin-bottom: 12px;
-}
-
-.cs-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.cs-section ul li {
-  font-size: 0.95rem;
-  color: var(--gray-700);
-  line-height: 1.65;
-  padding: 6px 0 6px 20px;
-  position: relative;
-}
-.cs-section ul li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 14px;
-  width: 6px;
-  height: 6px;
-  background: var(--teal);
-  border-radius: 50%;
-}
-
-.cs-section ol {
-  padding-left: 0;
-  counter-reset: step-counter;
-  list-style: none;
-}
-
-.cs-section ol li {
-  font-size: 0.95rem;
-  color: var(--gray-700);
-  line-height: 1.65;
-  padding: 10px 0 10px 48px;
-  position: relative;
-  counter-increment: step-counter;
-}
-
-.cs-section ol li::before {
-  content: counter(step-counter);
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 30px;
-  height: 30px;
-  background: var(--teal-light);
-  color: var(--teal);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-/* Results table */
-.cs-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 16px 0;
-  font-size: 0.9rem;
-}
-
-.cs-table thead th {
-  background: var(--gray-100);
-  padding: 12px 16px;
-  text-align: left;
-  font-weight: 600;
-  color: var(--navy);
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border-bottom: 2px solid var(--gray-200);
-}
-
-.cs-table tbody td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--gray-200);
-  color: var(--gray-700);
-}
-
-.cs-table tbody tr:last-child td { border-bottom: none; }
-.cs-table tbody tr:hover { background: var(--gray-100); }
-
-/* Screenshot in case study */
-.cs-screenshot {
-  margin: 32px 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-screenshot);
-  border: 1px solid var(--gray-200);
-}
-
-.cs-screenshot img { width: 100%; }
-
-/* Limitations callout */
-.cs-limitations {
-  background: var(--gray-100);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius);
-  padding: 24px 28px;
-}
-
-.cs-limitations p {
-  font-size: 0.88rem;
-  color: var(--gray-600);
-}
-
-/* Assets section */
-.cs-assets {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
-
-.cs-asset-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  font-size: 0.88rem;
-  font-weight: 550;
-  border: 1.5px solid var(--gray-300);
-  border-radius: var(--radius-sm);
-  color: var(--navy);
-  transition: all var(--transition);
-}
-.cs-asset-link:hover { border-color: var(--teal); color: var(--teal); }
-
-.cs-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--gray-600);
-  margin-bottom: 24px;
-}
-.cs-back-link:hover { color: var(--teal); }
-
-/* Tool stack pills */
-.tool-stack {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.tool-pill {
-  padding: 6px 14px;
-  font-size: 0.78rem;
-  font-weight: 550;
-  background: var(--gray-100);
-  color: var(--gray-700);
-  border-radius: 100px;
-  border: 1px solid var(--gray-200);
-}
-
-/* Risk tier badges */
-.tier-high { color: #C53030; font-weight: 600; }
-.tier-review { color: #B7791F; font-weight: 600; }
-.tier-clear { color: #276749; font-weight: 600; }
-
-/* ============================================
-   Responsive
-   ============================================ */
-
-@media (max-width: 1024px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-  .hero-visual { order: -1; }
-  .hero { min-height: auto; padding-top: 120px; }
-  h1 { font-size: 2.2rem; }
-  .capabilities-grid { grid-template-columns: repeat(3, 1fr); }
-  .project-card-inner { grid-template-columns: 1fr; }
-  .project-screenshot { min-height: 240px; }
-  .about-inner { grid-template-columns: 1fr; gap: 24px; }
-}
-
-@media (max-width: 768px) {
-  :root { --section-py: 64px; }
-  .container { padding: 0 20px; }
-  h1 { font-size: 1.85rem; }
-  h2 { font-size: 1.6rem; }
-
-  .nav-links { display: none; }
-  .nav-hamburger { display: block; }
-  .nav-links.open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: var(--white);
-    padding: 24px 32px;
-    border-bottom: 1px solid var(--gray-200);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    gap: 20px;
-  }
-
-  .proof-strip-inner { grid-template-columns: repeat(3, 1fr); }
-  .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
-  .experience-entry { grid-template-columns: 1fr; gap: 8px; }
-  .case-study-title { font-size: 1.8rem; }
-  .case-study-metrics-strip { gap: 24px; }
-  .footer-inner { flex-direction: column; text-align: center; }
-  .footer-nav { justify-content: center; }
-  .footer-right { flex-direction: column; }
-  .contact-link { min-width: auto; width: 100%; }
-
-  .hero-screenshots { height: 300px; }
-  .hero-screenshot:nth-child(1) { width: 90%; }
-  .hero-screenshot:nth-child(2) { width: 78%; top: 40px; }
-  .hero-screenshot:nth-child(3) { width: 70%; }
-}
-
-@media (max-width: 480px) {
-  .proof-strip-inner { grid-template-columns: repeat(2, 1fr); }
-  .capabilities-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; }
-  .btn { width: 100%; justify-content: center; }
-  .project-actions { flex-direction: column; }
-  .btn-sm { width: 100%; justify-content: center; }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deekshita Sai Patibandla — Supply Chain &amp; Operations Analyst</title>
+  <meta name="description" content="I build decision tools for demand planning, trade compliance, and transportation risk. Supply Chain and Operations Analyst portfolio.">
+  <meta property="og:title" content="Deekshita Sai Patibandla — Supply Chain & Operations Analyst">
+  <meta property="og:description" content="I build decision tools for demand planning, trade compliance, and transportation risk.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAFAFA; --white: #FFFFFF; --navy: #1B2A4A; --charcoal: #2D3748;
+      --teal: #2E8B8B; --teal-light: #E8F4F4; --teal-dark: #236B6B;
+      --gray-100: #F7F8FA; --gray-200: #EDF0F4; --gray-300: #E2E5EA;
+      --gray-400: #C4C9D2; --gray-500: #8892A0; --gray-600: #6B7280; --gray-700: #4A5568;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --max-w: 1140px; --section-py: 88px; --radius: 10px; --radius-sm: 6px;
+      --shadow-card: 0 1px 3px rgba(27,42,74,0.06), 0 4px 16px rgba(27,42,74,0.04);
+      --shadow-card-hover: 0 2px 8px rgba(27,42,74,0.08), 0 8px 28px rgba(27,42,74,0.06);
+      --transition: 0.25s ease;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font); color: var(--charcoal); background: var(--bg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--teal); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--teal-dark); }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+    h1, h2, h3, h4 { color: var(--navy); line-height: 1.25; font-weight: 600; }
+    h1 { font-size: 2.75rem; letter-spacing: -0.03em; }
+    h2 { font-size: 2rem; letter-spacing: -0.02em; }
+    h3 { font-size: 1.35rem; letter-spacing: -0.01em; }
+    .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+    .section-headline { margin-bottom: 16px; }
+    .section-subline { color: var(--gray-600); font-size: 1.05rem; max-width: 680px; line-height: 1.7; }
+
+    /* --- Nav --- */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,250,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); height: 64px; }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 1.05rem; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--gray-600); transition: color var(--transition); }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; transition: var(--transition); }
+
+    /* --- Hero --- */
+    .hero { padding-top: 140px; padding-bottom: var(--section-py); min-height: 88vh; display: flex; align-items: center; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-text h1 { margin-bottom: 20px; }
+    .hero-subheadline { font-size: 1.15rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 36px; max-width: 520px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-size: 0.92rem; font-weight: 550; font-family: var(--font); border-radius: var(--radius-sm); transition: all var(--transition); cursor: pointer; border: none; letter-spacing: 0.01em; }
+    .btn-primary { background: var(--navy); color: #fff; }
+    .btn-primary:hover { background: #243656; color: #fff; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--navy); border: 1.5px solid var(--gray-300); }
+    .btn-secondary:hover { border-color: var(--navy); transform: translateY(-1px); }
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+
+    /* Dashboard preview cards in hero */
+    .hero-dashboards { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 520px; }
+    .dash-preview { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow-card); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .dash-preview:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+    .dash-preview-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+    .dash-preview-title { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .dash-preview-metrics { display: flex; gap: 20px; }
+    .dash-preview-metric-val { font-size: 1.3rem; font-weight: 700; color: var(--teal); line-height: 1.2; }
+    .dash-preview-metric-label { font-size: 0.68rem; color: var(--gray-500); }
+    .dash-preview-bar { height: 4px; background: var(--gray-200); border-radius: 2px; margin-top: 10px; position: relative; overflow: hidden; }
+    .dash-preview-bar::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; border-radius: 2px; background: var(--teal); }
+    .dash-bar-1::after { width: 94%; }
+    .dash-bar-2::after { width: 67%; }
+    .dash-bar-3::after { width: 44%; }
+
+    /* --- Proof Strip --- */
+    .proof-strip { background: var(--gray-100); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 48px 0; }
+    .proof-strip-inner { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; text-align: center; }
+    .proof-number { font-size: 2.1rem; font-weight: 700; color: var(--teal); letter-spacing: -0.02em; line-height: 1.2; }
+    .proof-label { font-size: 0.82rem; color: var(--gray-600); margin-top: 6px; line-height: 1.4; font-weight: 450; }
+
+    /* --- Featured Tools --- */
+    .featured-tools { padding: var(--section-py) 0; padding-bottom: 100px; }
+    .featured-tools-header { margin-bottom: 56px; }
+    .project-cards { display: flex; flex-direction: column; gap: 48px; }
+    .project-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); transition: box-shadow var(--transition), transform var(--transition); }
+    .project-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+    .project-card-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .project-screenshot { background: var(--gray-100); padding: 32px; display: flex; flex-direction: column; justify-content: center; min-height: 340px; }
+    .project-screenshot-placeholder { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 20px; }
+    .psp-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--gray-200); }
+    .psp-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .psp-dot-r { background: #E5534B; }
+    .psp-dot-y { background: #DBA63A; }
+    .psp-dot-g { background: #57AB5A; }
+    .psp-title { font-size: 0.75rem; font-weight: 600; color: var(--gray-500); margin-left: 8px; }
+    .psp-rows { display: flex; flex-direction: column; gap: 6px; }
+    .psp-row { height: 8px; background: var(--gray-100); border-radius: 4px; }
+    .psp-row-teal { background: var(--teal-light); }
+    .psp-metrics-row { display: flex; gap: 12px; margin-top: 12px; }
+    .psp-metric-box { flex: 1; background: var(--gray-100); border-radius: 4px; padding: 8px; text-align: center; }
+    .psp-metric-box-val { font-size: 0.9rem; font-weight: 700; color: var(--teal); }
+    .psp-metric-box-label { font-size: 0.6rem; color: var(--gray-500); }
+    .project-content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .project-title { font-size: 1.5rem; font-weight: 650; color: var(--navy); margin-bottom: 8px; }
+    .project-subtitle { font-size: 0.95rem; color: var(--gray-600); margin-bottom: 20px; line-height: 1.5; }
+    .project-decision { font-size: 0.88rem; color: var(--teal-dark); font-weight: 550; margin-bottom: 20px; padding: 10px 16px; background: var(--teal-light); border-radius: var(--radius-sm); border-left: 3px solid var(--teal); }
+    .project-decision span { font-weight: 400; color: var(--gray-700); }
+    .project-metrics { display: flex; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; }
+    .project-metric-value { font-size: 1.15rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .project-metric-label { font-size: 0.75rem; color: var(--gray-500); font-weight: 450; margin-top: 2px; }
+    .project-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-sm { padding: 9px 18px; font-size: 0.82rem; font-weight: 550; border-radius: var(--radius-sm); font-family: var(--font); transition: all var(--transition); cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-sm-primary { background: var(--navy); color: #fff; }
+    .btn-sm-primary:hover { background: #243656; color: #fff; }
+    .btn-sm-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--gray-300); }
+    .btn-sm-outline:hover { border-color: var(--navy); }
+
+    /* --- How I Work --- */
+    .how-i-work { padding: var(--section-py) 0; background: var(--gray-100); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
+    .how-i-work-header { margin-bottom: 48px; }
+    .capabilities-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+    .capability-card { background: var(--white); padding: 32px 24px; border-radius: var(--radius); border: 1px solid var(--gray-200); text-align: center; transition: box-shadow var(--transition), transform var(--transition); }
+    .capability-card:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
+    .capability-icon { width: 44px; height: 44px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: var(--teal-light); border-radius: 10px; color: var(--teal); }
+    .capability-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .capability-title { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .capability-desc { font-size: 0.82rem; color: var(--gray-600); line-height: 1.55; }
+
+    /* --- About --- */
+    .about { padding: var(--section-py) 0; }
+    .about-inner { display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: start; }
+    .about-headline { font-size: 1.85rem; line-height: 1.3; letter-spacing: -0.02em; }
+    .about-body { font-size: 1.05rem; color: var(--gray-700); line-height: 1.75; }
+
+    /* --- Experience --- */
+    .experience { padding: var(--section-py) 0; background: var(--gray-100); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
+    .experience-header { margin-bottom: 40px; }
+    .experience-entries { display: flex; flex-direction: column; gap: 24px; }
+    .experience-entry { background: var(--white); padding: 32px 36px; border-radius: var(--radius); border: 1px solid var(--gray-200); display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: start; }
+    .experience-org { font-size: 0.95rem; font-weight: 600; color: var(--navy); }
+    .experience-role { font-size: 0.85rem; color: var(--teal); font-weight: 500; margin-top: 4px; }
+    .experience-desc { font-size: 0.95rem; color: var(--gray-700); line-height: 1.65; }
+
+    /* --- Contact --- */
+    .contact { padding: var(--section-py) 0; padding-bottom: 100px; }
+    .contact-inner { max-width: 600px; }
+    .contact h2 { margin-bottom: 16px; }
+    .contact-body { font-size: 1.05rem; color: var(--gray-600); margin-bottom: 36px; line-height: 1.65; }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link { display: inline-flex; align-items: center; gap: 12px; font-size: 0.95rem; font-weight: 500; color: var(--navy); transition: all var(--transition); padding: 12px 20px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); width: fit-content; min-width: 320px; }
+    .contact-link:hover { color: var(--teal); border-color: var(--teal); }
+    .contact-link svg { width: 18px; height: 18px; stroke: var(--gray-500); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .contact-link:hover svg { stroke: var(--teal); }
+
+    /* --- Footer --- */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 48px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-brand { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .footer-nav { list-style: none; display: flex; gap: 24px; }
+    .footer-nav a { font-size: 0.82rem; color: rgba(255,255,255,0.6); transition: color var(--transition); }
+    .footer-nav a:hover { color: #fff; }
+    .footer-right { display: flex; align-items: center; gap: 24px; }
+    .footer-social { display: flex; gap: 16px; list-style: none; }
+    .footer-social a { color: rgba(255,255,255,0.5); transition: color var(--transition); display: flex; }
+    .footer-social a:hover { color: #fff; }
+    .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
+    .footer-copyright { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+    .back-to-top { font-size: 0.82rem; color: rgba(255,255,255,0.5); transition: color var(--transition); }
+    .back-to-top:hover { color: #fff; }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .hero { min-height: auto; padding-top: 120px; }
+      h1 { font-size: 2.2rem; }
+      .capabilities-grid { grid-template-columns: repeat(3, 1fr); }
+      .project-card-inner { grid-template-columns: 1fr; }
+      .project-screenshot { min-height: 200px; }
+      .about-inner { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (max-width: 768px) {
+      :root { --section-py: 64px; }
+      .container { padding: 0 20px; }
+      h1 { font-size: 1.85rem; }
+      h2 { font-size: 1.6rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); padding: 24px 32px; border-bottom: 1px solid var(--gray-200); box-shadow: 0 4px 12px rgba(0,0,0,0.06); gap: 20px; }
+      .proof-strip-inner { grid-template-columns: repeat(3, 1fr); }
+      .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+      .experience-entry { grid-template-columns: 1fr; gap: 8px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-nav { justify-content: center; }
+      .footer-right { flex-direction: column; }
+      .contact-link { min-width: auto; width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .proof-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .capabilities-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .project-actions { flex-direction: column; }
+      .btn-sm { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">Deekshita Sai Patibandla</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#decision-tools">Decision Tools</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="https://drive.google.com/file/d/YOUR_RESUME_LINK/view" target="_blank">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1>I build decision tools for demand planning, trade compliance, and transportation risk.</h1>
+          <p class="hero-subheadline">Supply Chain and Operations Analyst focused on forecasting, logistics analytics, trade operations, and decision support.</p>
+          <div class="hero-actions">
+            <a href="#decision-tools" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              View Decision Tools
+            </a>
+            <a href="https://drive.google.com/file/d/YOUR_RESUME_LINK/view" class="btn btn-secondary" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Resume
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-dashboards">
+            <a href="https://rural-demand-proxy-ktqx46gyqeihdym2jbianq.streamlit.app" target="_blank" class="dash-preview" style="text-decoration:none;">
+              <div class="dash-preview-label">Live Tool</div>
+              <div class="dash-preview-title">Rural Demand Proxy Engine</div>
+              <div class="dash-preview-metrics">
+                <div><div class="dash-preview-metric-val">94.1%</div><div class="dash-preview-metric-label">Sister Store Match</div></div>
+                <div><div class="dash-preview-metric-val">27.2%</div><div class="dash-preview-metric-label">Error Reduction</div></div>
+                <div><div class="dash-preview-metric-val">$37</div><div class="dash-preview-metric-label">Freed/SKU</div></div>
+              </div>
+              <div class="dash-preview-bar dash-bar-1"></div>
+            </a>
+            <a href="https://intermodal-lane-risk-agent-7y4ts5ve9lcmitrpv3bk3v.streamlit.app" target="_blank" class="dash-preview" style="text-decoration:none;">
+              <div class="dash-preview-label">Live Tool</div>
+              <div class="dash-preview-title">Intermodal Lane Risk Agent</div>
+              <div class="dash-preview-metrics">
+                <div><div class="dash-preview-metric-val">15</div><div class="dash-preview-metric-label">Corridors</div></div>
+                <div><div class="dash-preview-metric-val">2</div><div class="dash-preview-metric-label">High Risk</div></div>
+                <div><div class="dash-preview-metric-val">100</div><div class="dash-preview-metric-label">Top Score</div></div>
+              </div>
+              <div class="dash-preview-bar dash-bar-2"></div>
+            </a>
+            <a href="https://de-minimis-compliance-defender-3rnnvl4ruxqzcmcbabfsii.streamlit.app" target="_blank" class="dash-preview" style="text-decoration:none;">
+              <div class="dash-preview-label">Live Tool</div>
+              <div class="dash-preview-title">De Minimis Compliance Defender</div>
+              <div class="dash-preview-metrics">
+                <div><div class="dash-preview-metric-val">25</div><div class="dash-preview-metric-label">SKUs</div></div>
+                <div><div class="dash-preview-metric-val">3</div><div class="dash-preview-metric-label">High Risk</div></div>
+                <div><div class="dash-preview-metric-val">56%</div><div class="dash-preview-metric-label">Flag Rate</div></div>
+              </div>
+              <div class="dash-preview-bar dash-bar-3"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <section class="proof-strip">
+    <div class="container">
+      <div class="proof-strip-inner">
+        <div class="proof-item"><div class="proof-number">27.2%</div><div class="proof-label">Forecast error reduction</div></div>
+        <div class="proof-item"><div class="proof-number">$37</div><div class="proof-label">Freed per SKU</div></div>
+        <div class="proof-item"><div class="proof-number">15</div><div class="proof-label">Freight corridors monitored</div></div>
+        <div class="proof-item"><div class="proof-number">25</div><div class="proof-label">SKUs triaged per manifest</div></div>
+        <div class="proof-item"><div class="proof-number">3</div><div class="proof-label">Live deployed tools</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED DECISION TOOLS -->
+  <section class="featured-tools" id="decision-tools">
+    <div class="container">
+      <div class="featured-tools-header">
+        <div class="section-label">Decision Tools</div>
+        <h2 class="section-headline">Each tool supports a specific business decision — deployed live, documented, and built on real data.</h2>
+      </div>
+      <div class="project-cards">
+
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-card-inner">
+            <div class="project-screenshot">
+              <div class="project-screenshot-placeholder">
+                <div class="psp-header"><span class="psp-dot psp-dot-r"></span><span class="psp-dot psp-dot-y"></span><span class="psp-dot psp-dot-g"></span><span class="psp-title">rural-demand-proxy.streamlit.app</span></div>
+                <div class="psp-rows"><div class="psp-row" style="width:60%"></div><div class="psp-row psp-row-teal" style="width:94%"></div><div class="psp-row" style="width:80%"></div><div class="psp-row psp-row-teal" style="width:72%"></div><div class="psp-row" style="width:45%"></div></div>
+                <div class="psp-metrics-row">
+                  <div class="psp-metric-box"><div class="psp-metric-box-val">TX_2</div><div class="psp-metric-box-label">Sister Store</div></div>
+                  <div class="psp-metric-box"><div class="psp-metric-box-val">94.1%</div><div class="psp-metric-box-label">Similarity</div></div>
+                  <div class="psp-metric-box"><div class="psp-metric-box-val">27.2%</div><div class="psp-metric-box-label">Improvement</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Rural Demand Proxy Engine</h3>
+              <p class="project-subtitle">Cold start inventory planning for new fulfillment locations</p>
+              <div class="project-decision">Decision supported: <span>What to stock on day one</span></div>
+              <div class="project-metrics">
+                <div><div class="project-metric-value">94.1%</div><div class="project-metric-label">Sister store match</div></div>
+                <div><div class="project-metric-value">27.2%</div><div class="project-metric-label">Forecast error reduction</div></div>
+                <div><div class="project-metric-value">$37</div><div class="project-metric-label">Freed per SKU</div></div>
+              </div>
+              <div class="project-actions">
+                <a href="https://rural-demand-proxy-ktqx46gyqeihdym2jbianq.streamlit.app" target="_blank" rel="noopener" class="btn-sm btn-sm-primary">Live App</a>
+                <a href="https://github.com/deekshitasaipatibandla/rural-demand-proxy" target="_blank" rel="noopener" class="btn-sm btn-sm-outline">GitHub</a>
+                <a href="https://colab.research.google.com/drive/1GSK9APEkVOnOmvMrUwDwOzXLDyVO5Jml" target="_blank" rel="noopener" class="btn-sm btn-sm-outline">Notebook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-card-inner">
+            <div class="project-screenshot">
+              <div class="project-screenshot-placeholder">
+                <div class="psp-header"><span class="psp-dot psp-dot-r"></span><span class="psp-dot psp-dot-y"></span><span class="psp-dot psp-dot-g"></span><span class="psp-title">intermodal-lane-risk.streamlit.app</span></div>
+                <div class="psp-rows"><div class="psp-row psp-row-teal" style="width:100%"></div><div class="psp-row psp-row-teal" style="width:87%"></div><div class="psp-row" style="width:51%"></div><div class="psp-row" style="width:45%"></div><div class="psp-row" style="width:20%"></div></div>
+                <div class="psp-metrics-row">
+                  <div class="psp-metric-box"><div class="psp-metric-box-val">HOU-CHI</div><div class="psp-metric-box-label">100/100 HIGH</div></div>
+                  <div class="psp-metric-box"><div class="psp-metric-box-val">DAL-ATL</div><div class="psp-metric-box-label">86.7 HIGH</div></div>
+                  <div class="psp-metric-box"><div class="psp-metric-box-val">LA-CHI</div><div class="psp-metric-box-label">0.0 LOW</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Intermodal Lane Risk Agent</h3>
+              <p class="project-subtitle">Pre-booking freight risk scoring across major US corridors</p>
+              <div class="project-decision">Decision supported: <span>Which corridor to avoid before tendering freight</span></div>
+              <div class="project-metrics">
+                <div><div class="project-metric-value">15</div><div class="project-metric-label">Corridors monitored</div></div>
+                <div><div class="project-metric-value">2</div><div class="project-metric-label">High-risk lanes flagged</div></div>
+                <div><div class="project-metric-value">Live</div><div class="project-metric-label">Hazard tracking</div></div>
+              </div>
+              <div class="project-actions">
+                <a href="https://intermodal-lane-risk-agent-7y4ts5ve9lcmitrpv3bk3v.streamlit.app" target="_blank" rel="noopener" class="btn-sm btn-sm-primary">Live App</a>
+                <a href="https://github.com/deekshitasaipatibandla/intermodal-lane-risk-agent" target="_blank" rel="noopener" class="btn-sm btn-sm-outline">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-card-inner">
+            <div class="project-screenshot">
+              <div class="project-screenshot-placeholder">
+                <div class="psp-header"><span class="psp-dot psp-dot-r"></span><span class="psp-dot psp-dot-y"></span><span class="psp-dot psp-dot-g"></span><span class="psp-title">de-minimis-compliance.streamlit.app</span></div>
+                <div class="psp-rows"><div class="psp-row" style="width:100%"></div><div class="psp-row psp-row-teal" style="width:44%"></div><div class="psp-row" style="width:44%"></div><div class="psp-row" style="width:12%;background:#FDE8E8"></div></div>
+                <div class="psp-metrics-row">
+                  <div class="psp-metric-box"><div class="psp-metric-box-val" style="color:#C53030">3</div><div class="psp-metric-box-label">High Risk</div></div>
+                  <div class="psp-metric-box"><div class="psp-metric-box-val" style="color:#B7791F">11</div><div class="psp-metric-box-label">Needs Review</div></div>
+                  <div class="psp-metric-box"><div class="psp-metric-box-val" style="color:#276749">11</div><div class="psp-metric-box-label">Cleared</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">De Minimis Compliance Defender</h3>
+              <p class="project-subtitle">Low-value import compliance triage for trade operations teams</p>
+              <div class="project-decision">Decision supported: <span>Which SKUs need broker escalation or analyst review</span></div>
+              <div class="project-metrics">
+                <div><div class="project-metric-value">25</div><div class="project-metric-label">SKUs processed</div></div>
+                <div><div class="project-metric-value">3</div><div class="project-metric-label">High Risk</div></div>
+                <div><div class="project-metric-value">11</div><div class="project-metric-label">Needs Review</div></div>
+                <div><div class="project-metric-value">11</div><div class="project-metric-label">Cleared</div></div>
+              </div>
+              <div class="project-actions">
+                <a href="https://de-minimis-compliance-defender-3rnnvl4ruxqzcmcbabfsii.streamlit.app" target="_blank" rel="noopener" class="btn-sm btn-sm-primary">Live App</a>
+                <a href="https://github.com/deekshitasaipatibandla/de-minimis-compliance-defender" target="_blank" rel="noopener" class="btn-sm btn-sm-outline">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW I WORK -->
+  <section class="how-i-work">
+    <div class="container">
+      <div class="how-i-work-header">
+        <div class="section-label">Approach</div>
+        <h2 class="section-headline">How I Work</h2>
+      </div>
+      <div class="capabilities-grid">
+        <div class="capability-card">
+          <div class="capability-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="capability-title">Forecasting</div>
+          <div class="capability-desc">Building demand baselines where no sales history exists.</div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="capability-title">Risk Scoring</div>
+          <div class="capability-desc">Quantifying disruption exposure across freight lanes in real time.</div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <div class="capability-title">Compliance Triage</div>
+          <div class="capability-desc">Separating high-risk imports from routine clearances at manifest scale.</div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="capability-title">Dashboarding</div>
+          <div class="capability-desc">Turning models into live, interactive tools that teams actually use.</div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <div class="capability-title">Decision Support</div>
+          <div class="capability-desc">Framing every output around a specific business decision.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-inner">
+        <h2 class="about-headline">Analytical rigor. Operational context. Tools that actually get used.</h2>
+        <p class="about-body">I'm Deekshita Sai Patibandla, a Supply Chain and Operations Analyst who builds decision tools at the intersection of data and operations. My work sits across forecasting, logistics risk, and trade compliance — informed by graduate study at the Thunderbird School of Global Management at Arizona State University. Every tool I ship is live deployed, documented, and built to support a real business decision.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience" id="experience">
+    <div class="container">
+      <div class="experience-header">
+        <div class="section-label">Experience</div>
+        <h2 class="section-headline">Experience Snapshot</h2>
+      </div>
+      <div class="experience-entries">
+        <div class="experience-entry">
+          <div><div class="experience-org">Arizona State University</div><div class="experience-role">IT Service Desk Analyst</div></div>
+          <p class="experience-desc">Improved reporting visibility, ticket workflow tracking, and service operations support across the IT organization.</p>
+        </div>
+        <div class="experience-entry">
+          <div><div class="experience-org">WeReach</div><div class="experience-role">Data and Operations Analyst</div></div>
+          <p class="experience-desc">Used SQL, reporting, and survey analysis to support stakeholder decisions and program resource allocation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="section-label">Contact</div>
+        <h2>Let's connect.</h2>
+        <p class="contact-body">Open to supply chain analyst, operations analytics, logistics, and trade compliance roles.</p>
+        <div class="contact-links">
+          <a href="mailto:deekshitasaipatibandla@gmail.com" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            deekshitasaipatibandla@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/deekshitasaipatibandla" target="_blank" rel="noopener" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/deekshitasaipatibandla" target="_blank" rel="noopener" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">Deekshita Sai Patibandla</div>
+          <ul class="footer-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#decision-tools">Decision Tools</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-right">
+          <ul class="footer-social">
+            <li><a href="https://linkedin.com/in/deekshitasaipatibandla" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+            <li><a href="https://github.com/deekshitasaipatibandla" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></li>
+            <li><a href="mailto:deekshitasaipatibandla@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a></li>
+          </ul>
+          <a href="#" class="back-to-top">Back to top</a>
+          <div class="footer-copyright">&copy; 2026 Deekshita Sai Patibandla</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
